@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Computer Science - Ganesh Srinivas</title>
+</head>
+<body>
+ <h1><a href="http://ganesh-srinivas.github.io">Ganesh Srinivas</a></h1>
+ <blockquote>"Incredible things are happening in the world," he said to Ursula. "Right there across the river there are all kinds of magical instruments while we keep living like donkeys."<br>Page 8, <em>One Hundred Years of Solitude</em><br>Gabriel Garcia Marquez</blockquote>
+ 
+ <p>A <a href="courses.html">list</a> of textbooks and course material for Computer Science courses: An evolving document for my personal reference.</p>
+
+ <!--Post-->
+ <h2>On Building Systems that will Fail - Fernando J. Corbato's Turing Award Speech</h2>
+ <h3>20 May 2017</h3>
+ <p>Fernando J. Corbato was given the Turing Award, the highest honor in Computer Science for his pioneering work in organizing the concepts and leading the development of the general-purpose, large-scale, time-sharing and resource-sharing computer systems, CTSS and Multics. The <a href="pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf">Multi-Level Feedback Queue (MLFQ)</a> CPU scheduling approach was first described in CTSS. Its a scheduler that can balance both response time and throughput without prior knowledge of process running time. It has multiple levels of processes, with the preference given to the highest-level. Processes in the same level are run in Round Robin fashion. When a process uses up its time slice, it is demoted to a lower level. Periodically, the priority of every process is boosted. This ensures attention to earlier-CPU-intensive processes that may later turn interactive.</p>
+ <p>In the speech, Corbato talks about how failure is inevitable in complex, ambitious systems. He offers six ways to resolve the problem:</p>
+ <ol>
+  <li>emphasis on elegance (achieving a given functionality with minimum mechanism and maximum clarity) and simplicity</li>
+  <li>do not underestimate value of metaphors. Metaphors are a way of internalizing and abstracting concepts allowing one's thinking to be on a higher plane and low-level mistakes to be avoided.</li>
+  <li>Use of constrained language for design or syntesis: by not allowing a programmer or designer to express irrelevant ideas, the domain of possible ideas becomes far more limited.</li>
+  <li>Anticipate human error and hardware failure: need to attach likelihood of occurrence to events and to address issues of the independence of failures.</li>
+  <li>During design, assume that the system will have to be repaired/modified.</li>
+  <li>Educational redundancy of the team in large projects is a good investment.</li>
+ </ol>
+ <p>This piece is similar to Brook's <em><a="https://archive.org/stream/mythicalmanmonth00fred#page/52/mode/2up">Mythical Man Month</a> or <a href="http://worrydream.com/refs/Brooks-NoSilverBullet.pdf">No Silver Bullet</a>: very management-y. Perhaps, one day I'll appreciate such works.</p>
+ 
+</body>
+</html>
