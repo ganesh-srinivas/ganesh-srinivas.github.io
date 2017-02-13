@@ -1,0 +1,9 @@
+##Detecting Large-Scale System Problems by Mining Console Logs
+Wei Xu. PhD dissertation. UC Berkeley.
+
+Console logs contain large amounts of free text data. System source code is a schema for the console log text. 
+Features are obtained from system state variables and message identifiers. Principal Component Analysis is 
+used to learn the normal pattern (first few principal components). Any system event far away from this normal pattern 
+is flagged as an anomaly.
+
+Here is an image that gives intuition for using PCA:
