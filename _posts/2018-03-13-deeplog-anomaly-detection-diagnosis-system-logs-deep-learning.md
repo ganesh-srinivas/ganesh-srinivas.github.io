@@ -7,7 +7,7 @@ date: 2017-02-23
 
 DeepLog is a system that performs anomaly detection and diagnosis from system logs through deep learning. It utlizes a recurrent neural network called Long Short Term Memory (LSTM) to model the system log as a natural language sequence. DeepLog detects anomalies when log patterns deviate from the model trained from log data under normal execution.
 
-<img alt="Image: Log key anomaly detection model" src="/assets/13mar2018-deeplog/13mar2018-deeplog-log-entries-keys-parameter-vector.png" align="center">
+<img alt="Image: Log key anomaly detection model" src="/assets/13mar2018-deeplog/13mar2018-deeplog-log-key-anomaly-detection-model.png" align="center">
 
 
 The [Spell](https://www.cs.utah.edu/~lifeifei/papers/spell.pdf) log parser is used to obtain two structured datasets from the syslog (figure below): a sequence of log keys (message types) and a sequence of parameter value vectors. Spell is an online streaming parser that utilizes a longest common subsequence based approach. The time complexity to process each log entry *e* is close to linear (to the size of *e*). I've only taken a cursory look at the Spell paper and need to study it more carefully to understand how the parsing happens.
@@ -24,11 +24,15 @@ The exact architecture of DeepLog is shown below:
 
 The paper also focusses on "Workflow Construction from Multi-Task Execution" (Section 4) for aiding in anomaly diagnosis. They propose two ways of going about this: using the execution path anomaly LSTM model and density-based clustering. When leveraging the LSTM model, they describe how shared segments, concurrency, new tasks, if-then branches and loops can be identified from the LSTM output probabilities. I *believe* that these are instructions that have to be translated into code that generates workflows from LSTM outputs. example of anomaly diagnosis using constructed workflow is shown below:
 
+<img alt="Image: DeepLog workflow construction using LSTM output probabilities" src="/assets/13mar2018-deeplog/13mar2018-deeplog-workflow-construction-using-lstm.png" align="center">
+
+The figure below shows how the workflow can be used for anomaly diagnosis.
+
 <img alt="Image: DeepLog anomaly diagnosis using workflow" src="/assets/13mar2018-deeplog/13mar2018-deeplog-anomaly-diagnosis-workflow.png" align="center">
 
-The authors point to related work in the area: unsupervised methods like PCA and Invariant Mining, a TFIDF binary LSTM classifier for IT system failure prediction and the CloudSeer workflow anomaly detection method. 
+The authors point to related work in the area: unsupervised methods like [PCA](https://ganesh-srinivas.github.io/blog/2017/02/18/interesting-papers-roundup-week-7-2017) and Invariant Mining, a TFIDF binary LSTM classifier for IT system failure prediction and the CloudSeer workflow anomaly detection method.
 
-### Evaluation
+## Evaluation
 The system was evaluated on two datasets: HDFS log data set from the PCA paper and the OpenStack log data set.
 
 For parameter value and performance anomaly detection, syslogs from OpenStack VM creation task were used. To simulate a performance anomaly which could be caused by a DoS attack, network speed from the controller to the compute nodes was throttled at two different points. These anomalies were successfully detected. 
