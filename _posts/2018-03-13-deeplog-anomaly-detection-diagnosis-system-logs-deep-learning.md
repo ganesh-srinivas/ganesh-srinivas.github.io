@@ -3,7 +3,7 @@ layout: post
 title: "DeepLog: Anomaly Detection and Diagnosis of System Logs through Deep Learning"
 date: 2017-02-23
 ---
-[DeepLog: Anomaly Detection and Diagnosis of System Logs through Deep Learning](https://www.cs.utah.edu/~lifeifei/papers/deeplog.pdf). Min Du, Feifei Li. ACM CCS 2017.
+[DeepLog: Anomaly Detection and Diagnosis of System Logs through Deep Learning](https://www.cs.utah.edu/~lifeifei/papers/deeplog.pdf). Min Du, Feifei Li, G. Zheng, V. Srikumar. ACM CCS 2017.
 
 DeepLog is a system that performs anomaly detection and diagnosis from system logs through deep learning. It utlizes a recurrent neural network called Long Short Term Memory (LSTM) to model the system log as a natural language sequence. DeepLog detects anomalies when log patterns deviate from the model trained from log data under normal execution.
 
@@ -30,11 +30,19 @@ The figure below shows how the workflow can be used for anomaly diagnosis.
 
 <img alt="Image: DeepLog anomaly diagnosis using workflow" src="/assets/13mar2018-deeplog/13mar2018-deeplog-anomaly-diagnosis-workflow.png" align="center">
 
-The authors point to related work in the area: unsupervised methods like [PCA](https://ganesh-srinivas.github.io/blog/2017/02/18/interesting-papers-roundup-week-7-2017) and Invariant Mining, a TFIDF binary LSTM classifier for IT system failure prediction and the CloudSeer workflow anomaly detection method.
+The authors have created a section that points to related work in the area: unsupervised methods like [PCA](https://ganesh-srinivas.github.io/blog/2017/02/18/interesting-papers-roundup-week-7-2017) (SOSP 2009) and Invariant Mining, a TFIDF binary LSTM classifier for IT system failure prediction and the CloudSeer workflow anomaly detection method.
 
 ## Evaluation
-The system was evaluated on two datasets: HDFS log data set from the PCA paper and the OpenStack log data set.
+First off, the authors have been very transparent about how to [obtain](https://www.cs.utah.edu/~mind/papers/deeplog_misc.html) and use the datasets they evaluated their system on. The system was evaluated on two datasets that are : HDFS log data set from the SOSP 2009 paper and the OpenStack log data set. Only 1% of the HDFS dataset was used for training.
 
 For parameter value and performance anomaly detection, syslogs from OpenStack VM creation task were used. To simulate a performance anomaly which could be caused by a DoS attack, network speed from the controller to the compute nodes was throttled at two different points. These anomalies were successfully detected. 
 
 The authors also investigate systems containing real attacks to demonstrate DeepLog's effectiveness. They use the VAST Challenge 2011 network security logs (firewall and intrusion detection system) where DeepLog performs well: only one false positive and one false negative. DeepLog also detects atypical messages produced in kernel log by Blind Return Oriented Programming (BROP) attacks.
+
+The paper contains details about online training and system performance that I won't go into detail here. For example, DeepLog's prediction cost per log entry is only around 1 millisecond on a standard non-GPU workstation (deep learning algorithms obtain an order-of-magnitude improvement in performance on GPUs).
+
+Here are the default values for hyperparameters (configurations that the system doesn't learn from data):
+- cutoff in the prediction output to be considered normal, *g* = 9. *g* can be adjusted to achieve higher true positive rate or lower false positive rate.
+- window size used for training and prediction, *h* = 10. 
+- number of layers in the LSTM network, *L* = 2.
+- number of memory units in one LSTM block, *alpha* = 64.
