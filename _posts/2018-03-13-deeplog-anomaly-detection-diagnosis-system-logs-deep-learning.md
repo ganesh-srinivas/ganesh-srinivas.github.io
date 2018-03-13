@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "DeepLog: Anomaly Detection and Diagnosis of System Logs through Deep Learning"
-date: 2017-02-23
+date: 2018-02-23
 ---
 [DeepLog: Anomaly Detection and Diagnosis of System Logs through Deep Learning](https://www.cs.utah.edu/~lifeifei/papers/deeplog.pdf). Min Du, Feifei Li, G. Zheng, V. Srikumar. ACM CCS 2017.
 
