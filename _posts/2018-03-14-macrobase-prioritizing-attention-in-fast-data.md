@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "MacroBase: Prioritizing Attention in Fast Data"
-date: 2017-03-13
+date: 2018-03-13
 ---
 [MacroBase: Prioritizing Attention in Fast Data](https://arxiv.org/pdf/1603.00567.pdf). Peter Bailis, Edward Gan, Samuel Madden, Deepak Narayanan, Kexin Rong, Sahaana Suri. SIGMOD 2017. Selected as "Best of SIGMOD 2017". 2017. [Project website](http://macrobase.stanford.edu).
 
